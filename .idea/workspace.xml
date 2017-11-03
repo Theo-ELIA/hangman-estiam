@@ -512,7 +512,7 @@
       <option name="presentableId" value="Default" />
       <updated>1509705619930</updated>
       <workItem from="1509705622179" duration="4488000" />
-      <workItem from="1509714082998" duration="4524000" />
+      <workItem from="1509714082998" duration="4531000" />
     </task>
     <task id="LOCAL-00001" summary="maj gitignore">
       <created>1509718773567</created>
@@ -528,11 +528,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509718809643</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="maj gitignore">
+      <created>1509719020377</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1509719020377</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9012000" />
+    <option name="totallyTimeSpent" value="9019000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
