@@ -37,7 +37,15 @@ class GameController extends Controller
      */
     public function letter(SessionInterface $session, $letter)
     {
-        $this->getRunner($session)->playLetter($letter);
+        $game = $this->getRunner($session)->playLetter($letter);
+
+        if ($game->isOver()) {
+            if ($game->isWon()) {
+                return $this->redirectToRoute('app_game_won');
+            }
+
+            return $this->redirectToRoute('app_game_failed');
+        }
 
         return $this->redirectToRoute('game_index');
     }
