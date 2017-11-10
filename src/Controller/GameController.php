@@ -26,7 +26,6 @@ class GameController extends Controller {
      * @Route("/")
      */
     public function game(Request $request){
-        //dump(getenv(('APP_ENV')));
         $session = $request->getSession();
         $wordList = new WordList();
         $wordList->addLoader('txt',new TextFileLoader());
@@ -51,8 +50,6 @@ class GameController extends Controller {
      * @Route("/letter/{letter}")
      */
     public function letter($letter){
-        //dump(getenv(('APP_ENV')));
-        dump($letter);
         return $this->render('game/game.html.twig');
     }
 
@@ -60,7 +57,6 @@ class GameController extends Controller {
      * @Route("/reset")
      */
     public function reset(){
-        //dump(getenv(('APP_ENV')));
         return $this->render('game/game.html.twig');
     }
 
@@ -68,7 +64,6 @@ class GameController extends Controller {
      * @Route("/word")
      */
     public function word(){
-        //dump(getenv(('APP_ENV')));
         return $this->render('game/game.html.twig');
     }
 
@@ -76,7 +71,6 @@ class GameController extends Controller {
      * @Route("/won")
      */
     public function won(){
-        //dump(getenv(('APP_ENV')));
         return $this->render('game/won.html.twig');
     }
 
@@ -84,7 +78,6 @@ class GameController extends Controller {
      * @Route("/failed")
      */
     public function failed(){
-        //dump(getenv(('APP_ENV')));
         return $this->render('game/failed.html.twig');
     }
 }
