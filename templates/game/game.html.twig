@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-
-    {{ game.word }}
     <h2>Guess the mysterious word</h2>
 
     <p class="attempts">
@@ -28,9 +26,9 @@
     <h2>Try a letter</h2>
 
     <ul>
-        {% for l in 'a'..'z' %}
+        {% for l in 'A'..'Z' %}
             <li class="letter">
-                <a href="{{ path('app_game_letter', {letter: l} ) }}">
+                <a href="{{ path('app_game_letter', { letter: l } ) }}">
                     {{ l }}
                 </a>
             </li>

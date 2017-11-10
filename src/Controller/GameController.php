@@ -16,17 +16,78 @@ use App\Game\WordList;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * @Route("/game")
  */
-class GameController extends Controller {
+class GameController extends Controller
+{
     /**
-     * @Route("/")
+     * @Route("/", name="game_index")
      */
-    public function game(Request $request){
-        $session = $request->getSession();
+    public function game(SessionInterface $session)
+    {
+        return $this->render('game/game.html.twig',[
+            'game' => $this->getRunner($session)->loadGame(),
+        ]);
+    }
+    /**
+     * @Route("/letter/{letter}", requirements={"letter": "[A-Z]"})
+     */
+    public function letter(SessionInterface $session, $letter)
+    {
+        $this->getRunner($session)->playLetter($letter);
+
+        return $this->redirectToRoute('game_index');
+    }
+
+    /**
+     * @Route("/reset")
+     */
+    public function reset(SessionInterface $session)
+    {
+        $this->getRunner($session)->resetGame();
+
+        return $this->redirectToRoute('game_index');
+    }
+
+    /**
+     * @Route("/word")
+     */
+    public function word(Request $request)
+    {
+        $game = $this->getRunner($request->getSession())->playWord($request->request->getAlpha('word'));
+
+        if ($game->isWon()) {
+            return $this->redirectToRoute('app_game_won');
+        }
+
+        return $this->redirectToRoute('app_game_failed');
+    }
+
+    /**
+     * @Route("/won")
+     */
+    public function won(SessionInterface $session)
+    {
+        return $this->render('game/won.html.twig', [
+            'game' => $this->getRunner($session)->resetGameOnSuccess(),
+        ]);
+    }
+
+    /**
+     * @Route("/failed")
+     */
+    public function failed(SessionInterface $session)
+    {
+        return $this->render('game/failed.html.twig', [
+            'game' => $this->getRunner($session)->resetGameOnFailure(),
+        ]);
+    }
+
+    private function getRunner(SessionInterface $session): GameRunner
+    {
         $wordList = new WordList();
         $wordList->addLoader('txt',new TextFileLoader());
         $wordList->addLoader('xml',new XmlFileLoader());
@@ -39,45 +100,6 @@ class GameController extends Controller {
 
         $context = new GameContext($session);
 
-        $runner = new GameRunner($context,$wordList);
-
-
-        return $this->render('game/game.html.twig',[
-            'game' => $runner->loadGame(11),
-        ]);
-    }
-    /**
-     * @Route("/letter/{letter}")
-     */
-    public function letter($letter){
-        return $this->render('game/game.html.twig');
-    }
-
-    /**
-     * @Route("/reset")
-     */
-    public function reset(){
-        return $this->render('game/game.html.twig');
-    }
-
-    /**
-     * @Route("/word")
-     */
-    public function word(){
-        return $this->render('game/game.html.twig');
-    }
-
-    /**
-     * @Route("/won")
-     */
-    public function won(){
-        return $this->render('game/won.html.twig');
-    }
-
-    /**
-     * @Route("/failed")
-     */
-    public function failed(){
-        return $this->render('game/failed.html.twig');
+        return new GameRunner($context,$wordList);
     }
 }
