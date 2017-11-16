@@ -238,5 +238,32 @@
     },
     "symfony/asset": {
         "version": "v3.3.10"
+    },
+    "symfony/inflector": {
+        "version": "v3.3.10"
+    },
+    "symfony/property-access": {
+        "version": "v3.3.10"
+    },
+    "symfony/polyfill-util": {
+        "version": "v1.6.0"
+    },
+    "symfony/polyfill-php56": {
+        "version": "v1.6.0"
+    },
+    "symfony/security": {
+        "version": "v3.3.10"
+    },
+    "symfony/security-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "85834af1496735f28d831489d12ab1921a875e0d"
+        }
+    },
+    "symfony/expression-language": {
+        "version": "v3.3.10"
     }
 }

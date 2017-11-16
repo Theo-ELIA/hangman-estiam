@@ -6,3 +6,10 @@
 controllers:
     resource: ../src/Controller/
     type: annotation
+
+login_check:
+    path: /login/check
+    methods: [POST]
+
+logout:
+    path: /logout

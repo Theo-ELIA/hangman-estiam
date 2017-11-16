@@ -1,0 +1,32 @@
+security:
+
+    encoders:
+        Symfony\Component\Security\Core\User\UserInterface: bcrypt
+
+    # https://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        players_in_memory:
+            memory:
+                users:
+                    toto:
+                        password: $2y$13$/YtDZL1hu8sNrWLwWsKoweQ3lfP8/bMXlEEphINRXDeLHAHWAAvW2
+                        roles: ROLE_PLAYER
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            form_login:
+                login_path: app_main_index
+                check_path: login_check
+                username_parameter: player_username
+                password_parameter: player_password
+                csrf_parameter: csrf_player_token
+                csrf_token_id: authenticate_player
+                default_target_path: game_index
+            logout:
+                path: logout
+                target: app_main_index
