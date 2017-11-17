@@ -1,17 +1,5 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h2>Access your player account</h2>
-
-
-    <form action="{{ path('login_check') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="player_username" value="" />
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="player_password" />
-
-
-        <button type="submit">login</button>
-    </form>
+<h2>Hangman Game</h3>
 {% endblock %}

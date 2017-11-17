@@ -150,4 +150,8 @@ class GameRunner
     {
         return new NotFoundHttpException($message);
     }
+
+    public function getWordList() {
+        return $this->wordList;
+    }
 }

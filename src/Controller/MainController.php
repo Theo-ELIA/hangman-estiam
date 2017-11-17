@@ -22,4 +22,12 @@ class MainController extends Controller {
         return $this->render('main/index.html.twig');
     }
 
+    /**
+     * @Route("/signin")
+     */
+    public function login(){
+        //dump(getenv(('APP_ENV')));
+        //dump($this->get('logger'));
+        return $this->render('main/login.html.twig');
+    }
 }

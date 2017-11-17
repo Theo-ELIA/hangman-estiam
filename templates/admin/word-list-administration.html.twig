@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2>Administration of the custom word list</h2>
+
+
+	{% for length, wordListByLength in wordList %}
+	<div>
+		<h3>Mots de {{ length }} lettres</h3>
+		<ul>
+		{% for word in wordListByLength %}
+		<li>{{ word }} <a href="removeWord/{{word}}">❌</a></li>
+		{% endfor %}
+	</div>
+	{% endfor %}
+	<form action="{{ path('add_custom_word') }}" method="post">
+		<label for="newWord">New Word :</label>
+		<input id="newWord" type="text" name="newWord">
+		<input type="submit" value="save">
+	</form>
+
+{% endblock %}

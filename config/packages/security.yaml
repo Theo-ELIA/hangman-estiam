@@ -9,8 +9,11 @@ security:
             memory:
                 users:
                     toto:
-                        password: $2y$13$/YtDZL1hu8sNrWLwWsKoweQ3lfP8/bMXlEEphINRXDeLHAHWAAvW2
+                        password: $2y$10$gOiZBQ1FNHOFFnZqJUgqxeLEXzzi0hHsRlKElp.VvMNfgJlZh5D3G
                         roles: ROLE_PLAYER
+                    admin:
+                        password: $2y$10$hZrVHLS0D/6VV6jjisU0rO5pEddAH29EhyUGnh1qMiWXjWnUHSFGq
+                        roles: ROLE_PLAYER, ROLE_ADMIN
 
     firewalls:
         dev:

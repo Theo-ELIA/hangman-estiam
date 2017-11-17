@@ -84,4 +84,34 @@ class GameController extends Controller
             'game' => $this->get(GameRunner::class)->resetGameOnFailure(),
         ]);
     }
+
+    /**
+     * @Route("/admin", name="admin_index")
+     */
+    public function admin()
+    {
+        return $this->render('admin/word-list-administration.html.twig', [
+            'wordList' => $this->get(GameRunner::class)->getWordList()->getCustomWords(),
+        ]);
+    }
+
+    /**
+     * @Route("/removeWord/{word}", requirements={"word": "\w+"})
+     */
+    public function removeWord(string $word)
+    {
+        $game = $this->get(GameRunner::class)->getWordList()->removeCustomWord($word);
+
+        return $this->redirectToRoute('admin_index');
+    }
+
+    /**
+     * @Route("/addWord", name="add_custom_word")
+     * Method("POST")
+     */
+    public function addWord(Request $request) {	
+        $newWord = $request->request->get('newWord');
+        $this->get(GameRunner::class)->getWordList()->addCustomWord($newWord);
+        return $this->redirectToRoute('admin_index');
+    }
 }

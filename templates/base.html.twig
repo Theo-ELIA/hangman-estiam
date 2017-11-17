@@ -17,15 +17,26 @@
                 </div>
                 <div id="menu">
                     <ul>
+                        {% if app.user %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="administration_page_item">
+                            <a href="admin">Admin</a>
+                        </li>
+                        {% endif %}
                         <li class="first current_page_item">
                             <a href="/game/">Game</a>
                         </li>
+                        <li>
+                            <a href="/logout">Logout</a>
+                        </li>
+                        {% else %}
                         <li>
                             <a href="/signup">Register</a>
                         </li>
                         <li>
                             <a href="/signin">Login</a>
                         </li>
+                        {% endif %}
                         <li>
                             <a href="#">Contact</a>
                         </li>
